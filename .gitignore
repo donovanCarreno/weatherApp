@@ -1,0 +1,8 @@
+# dependencies
+node_modules
+
+# api key
+key.js
+
+# webpack output
+public/bundle.js
