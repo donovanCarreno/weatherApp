@@ -4,6 +4,7 @@
   "description": "",
   "main": "",
   "scripts": {
+    "start:dev": "webpack --watch --progress --colors & nodemon server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,7 +13,8 @@
   "dependencies": {
     "express": "^4.14.0",
     "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "react-dom": "^15.4.1",
+    "react-router": "^3.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.18.2",
