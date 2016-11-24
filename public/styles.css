@@ -1,0 +1,56 @@
+body {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.container {
+  margin: 10px auto;
+  text-align: center;
+}
+header {
+  background-color: black;
+  color: white;
+  height: 25px;
+}
+
+.main {
+  background-color: black;
+  width: 100%;
+}
+
+img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.temp, .city, .summary {
+  color: white;
+  position: fixed;
+}
+
+.summary {
+  font-size: 1.5em;
+  left: 135px;
+  padding: 5px;
+}
+
+.temp {
+  font-size: 4em;
+  top: 60px;
+  left: 155px;
+}
+
+.city {
+  font-size: 2em;
+  top: 120px;
+  left: 120px;
+}
+
+footer {
+  background-color: black;
+  color: white;
+  height: 25px;
+}
