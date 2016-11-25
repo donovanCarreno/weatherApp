@@ -1,7 +1,3 @@
-body {
-
-}
-
 .container {
   margin: 10px auto;
   text-align: center;
@@ -11,9 +7,6 @@ header {
   height: 25px;
 }
 
-.main {
-}
-
 input {
   border-color: black;
 }
@@ -21,9 +14,6 @@ input {
 .daily {
   border: 1px solid black;
   padding-top: 10px;
-}
-
-.temp, .city, .summary {
 }
 
 .summary {
@@ -49,4 +39,31 @@ input {
 .footer {
   height: 25px;
   padding-top: 10px;
+}
+
+@media screen and (min-width: 700px) {
+  span {
+    display: block;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  .days {
+    box-sizing: border-box;
+    float: left;
+    height: 200px;
+    margin-left: 2px;
+    margin-right: 2px;
+    width: 13%;
+  }
+
+  .daily {
+    clear: both;
+  }
+
+  .footer {
+    clear: left;
+  }
 }

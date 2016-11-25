@@ -71,7 +71,7 @@ class App extends React.Component {
             {/* <img src={this.state.icon}></img> */}
           </div>
           <div className="daily">
-          Next 7 days
+          <span>Next 7 days</span>
           {this.state.data.daily ? this.state.data.daily.data.map((day, i) => {
             if (i == 0) return
             return <Day key={day.time} day={day}/>
