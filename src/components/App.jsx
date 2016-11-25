@@ -14,6 +14,7 @@ class App extends React.Component {
       address: 'Sioux Falls, SD',
       data: mockData,
       icon: 'http://bit.ly/1NlhgeK',
+      summary: mockData.hourly.summary,
       temp: 55
     }
   }
