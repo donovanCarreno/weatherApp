@@ -29,6 +29,8 @@ class App extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
+    this.refs.input.blur()
+
     $.ajax(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.address}&key=${mapsKey}`)
     .then((geoData) => {
       let lat = geoData.results[0].geometry.location.lat
@@ -62,7 +64,7 @@ class App extends React.Component {
         <header>This is my header</header>
         <div className="main">
           <form onSubmit={this.handleSubmit}>
-            <input onChange={this.handleChange} type='text' placeholder='Sioux Falls, SD'/>
+            <input onChange={this.handleChange} ref="input" type='text' placeholder='Sioux Falls, SD'/>
             <input type='submit' value='Submit' hidden/>
           </form>
           <div className="today">
