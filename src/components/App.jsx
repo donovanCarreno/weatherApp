@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import {Router, Route, browserHistory, IndexRoute} from 'react-router'
 import {apiKey, mapsKey} from '../../key'
 import {Day} from './Day'
+import {mockData} from '../../mockData'
 
 class App extends React.Component {
   constructor() {
@@ -10,10 +11,8 @@ class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.state = {
-      address: '',
-      data: {
-        default: "stuff"
-      },
+      address: 'Sioux Falls, SD',
+      data: mockData,
       icon: 'http://bit.ly/1NlhgeK',
       temp: 55
     }
@@ -63,17 +62,25 @@ class App extends React.Component {
         <div className="main">
           <form onSubmit={this.handleSubmit}>
             <input onChange={this.handleChange} type='text' placeholder='Sioux Falls, SD'/>
-            <input type='submit' value='Submit'/>
+            <input type='submit' value='Submit' hidden/>
           </form>
-          <p className="summary">{this.state.summary}</p>
-          <p className="temp">{this.state.temp}&#8457;</p>
-          <p className="city">{this.state.address}</p>
-          <img src={this.state.icon}></img>
+          <div className="today">
+            <p className="summary">{this.state.summary}</p>
+            <p className="temp">{this.state.temp}&#8457;</p>
+            <p className="city">{this.state.address}</p>
+            {/* <img src={this.state.icon}></img> */}
+          </div>
+          <div className="daily">
+          Next 7 days
+          {this.state.data.daily ? this.state.data.daily.data.map((day, i) => {
+            if (i == 0) return
+            return <Day key={day.time} day={day}/>
+          }) : 'nada'}
+          </div>
         </div>
-        {this.state.data.daily ? this.state.data.daily.data.map((day) => (
-          <Day key={day.time} day={day}/>
-        )) : 'nada'}
-        <footer>This is my footer</footer>
+        <div className="footer">
+          <footer><a href="https://darksky.net/poweredby/">Powered by Dark Sky</a></footer>
+        </div>
       </div>
     )
   }

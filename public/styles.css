@@ -1,64 +1,52 @@
 body {
-  background-color: black;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+
 }
 
 .container {
   margin: 10px auto;
   text-align: center;
 }
+
 header {
-  background-color: black;
-  color: white;
   height: 25px;
 }
 
 .main {
-  background-color: black;
-  height: 500px;
-  width: 100%;
 }
 
-img {
-  height: 500px;
-  max-width: 100%;
+input {
+  border-color: black;
+}
+
+.daily {
+  border: 1px solid black;
+  padding-top: 10px;
 }
 
 .temp, .city, .summary {
-  color: white;
-  position: fixed;
 }
 
 .summary {
   font-size: 1.5em;
-  /*left: 135px;*/
   padding: 5px;
 }
 
 .temp {
   font-size: 4em;
-  top: 125px;
-  /*left: 155px;*/
 }
 
 .city {
   font-size: 2em;
-  top: 185px;
-  /*left: 120px;*/
+  padding-bottom: 5px;
 }
 
 .days {
-  background-color: black;
-  color: white;
-  display: inline-block;
+  border: 1px solid black;
+  margin: 10px;
+  padding: 5px;
 }
 
-footer {
-  background-color: black;
-  color: white;
+.footer {
   height: 25px;
+  padding-top: 10px;
 }
