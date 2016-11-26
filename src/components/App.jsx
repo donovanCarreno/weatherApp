@@ -73,13 +73,25 @@ class App extends React.Component {
     })
   }
 
+  componentDidMount() {
+    let search = document.getElementById('search')
+    let autocomplete = new google.maps.places.Autocomplete(search, {types: ['(cities)']})
+    autocomplete.addListener('place_changed',() => {
+      let address = autocomplete.getPlace();
+      address = `${address.address_components[0].short_name}, ${address.address_components[2].short_name}`
+
+      this.setState({address})
+      this.handleSubmit()
+    })
+  }
+
   render() {
     return (
       <div className="container">
         <header>This is my header</header>
         <div className="main">
           <form onSubmit={this.handleSubmit}>
-            <input onChange={this.handleChange} ref="input" type='text' placeholder='City, ST'/>
+            <input id="search" value={this.state.address} onChange={this.handleChange} ref="input" type='text' placeholder='City, ST'/>
             <img src="/gps.png" onClick={this.currentLocation} />
           </form>
           <div className="today">

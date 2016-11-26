@@ -17,12 +17,15 @@ img {
 }
 
 input {
-  /*background: url('gps.png') no-repeat right;
-  background-size: contain;*/
   border-color: black;
   border-radius: 10px;
   font-size: 25px;
   text-align: center;
+}
+
+.pac-container {
+  height: 150px;
+  overflow-y: scroll;
 }
 
 .today {
