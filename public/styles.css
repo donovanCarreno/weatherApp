@@ -7,7 +7,14 @@ header {
   height: 25px;
 }
 
+img {
+  height: 20px;
+  margin-left: -25px;
+}
+
 input {
+  /*background: url('gps.png') no-repeat right;
+  background-size: contain;*/
   border-color: black;
   border-radius: 10px;
   font-size: 25px;
@@ -67,13 +74,5 @@ input {
     margin-right: 2px;
     vertical-align: top;
     width: 13%;
-  }
-
-  .daily {
-    /*float: left;*/
-  }
-
-  .footer {
-    clear: left;
   }
 }

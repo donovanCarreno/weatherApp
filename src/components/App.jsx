@@ -10,13 +10,25 @@ class App extends React.Component {
     super()
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.currentLocation = this.currentLocation.bind(this)
     this.state = {
-      address: 'Sioux Falls, SD',
+      address: '',
       data: mockData,
       icon: 'http://bit.ly/1NlhgeK',
       summary: mockData.hourly.summary,
       temp: 55
     }
+  }
+
+  currentLocation(e) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      $.ajax(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=${mapsKey}`)
+      .then((addressData) => {
+        let address = `${addressData.results[0].address_components[2].short_name}, ${addressData.results[0].address_components[4].short_name}`
+        this.setState({address})
+        this.handleSubmit()
+      })
+    })
   }
 
   handleChange(e) {
@@ -28,7 +40,10 @@ class App extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault()
+    if (e) {
+      e.preventDefault()
+    }
+
     this.refs.input.blur()
 
     $.ajax(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.address}&key=${mapsKey}`)
@@ -64,8 +79,9 @@ class App extends React.Component {
         <header>This is my header</header>
         <div className="main">
           <form onSubmit={this.handleSubmit}>
-            <input onChange={this.handleChange} ref="input" type='text' placeholder='Sioux Falls, SD'/>
-            <input type='submit' value='Submit' hidden/>
+            <input onChange={this.handleChange} ref="input" type='text' placeholder='City, ST'/>
+            <img src="/gps.png" onClick={this.currentLocation} />
+            {/* <input type='submit' value='Submit' hidden/> */}
           </form>
           <div className="today">
             <p className="summary">{this.state.summary}</p>
