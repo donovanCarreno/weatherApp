@@ -15,8 +15,8 @@ class App extends React.Component {
       address: '',
       data: mockData,
       icon: 'http://bit.ly/1NlhgeK',
-      summary: mockData.hourly.summary,
-      temp: 55
+      summary: '',
+      temp: null
     }
   }
 
@@ -81,7 +81,6 @@ class App extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <input onChange={this.handleChange} ref="input" type='text' placeholder='City, ST'/>
             <img src="/gps.png" onClick={this.currentLocation} />
-            {/* <input type='submit' value='Submit' hidden/> */}
           </form>
           <div className="today">
             <p className="summary">{this.state.summary}</p>
