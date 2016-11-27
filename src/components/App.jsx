@@ -15,6 +15,7 @@ class App extends React.Component {
       address: '',
       data: mockData,
       icon: 'http://bit.ly/1NlhgeK',
+      landing: true,
       summary: '',
       temp: null
     }
@@ -66,6 +67,7 @@ class App extends React.Component {
         this.setState({
           data,
           icon,
+          landing: false,
           summary,
           temp
         })
@@ -77,8 +79,9 @@ class App extends React.Component {
     let search = document.getElementById('search')
     let autocomplete = new google.maps.places.Autocomplete(search, {types: ['(cities)']})
     autocomplete.addListener('place_changed',() => {
-      let address = autocomplete.getPlace();
-      address = `${address.address_components[0].short_name}, ${address.address_components[2].short_name}`
+      let address = autocomplete.getPlace().formatted_address.split(',')
+      address.pop()
+      address = address.join()
 
       this.setState({address})
       this.handleSubmit()
@@ -88,25 +91,31 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <header>This is my header</header>
-        <div className="main">
+        <header>
           <form onSubmit={this.handleSubmit}>
             <input id="search" value={this.state.address} onChange={this.handleChange} ref="input" type='text' placeholder='City, ST'/>
-            <img src="/gps.png" onClick={this.currentLocation} />
+            <img className="gps" src="/gps.png" onClick={this.currentLocation} />
           </form>
-          <div className="today">
-            <p className="summary">{this.state.summary}</p>
-            <p className="temp">{this.state.temp}&#8457;</p>
-            <p className="city">{this.state.address}</p>
-            {/* <img src={this.state.icon}></img> */}
-          </div>
-          <div className="daily">
-          <span>Next 7 days</span>
-          {this.state.data.daily ? this.state.data.daily.data.map((day, i) => {
-            if (i == 0) return
-            return <Day key={day.time} day={day}/>
-          }) : 'nada'}
-          </div>
+        </header>
+        <div className="main">
+          {this.state.landing ? (
+            <img className="landing" src="/landing.jpg" />
+          ) : (
+            <div className="details">
+              <div className="today">
+                <p className="summary">{this.state.summary}</p>
+                <p className="temp">{this.state.temp}&#8457;</p>
+                <p className="city">{this.state.address}</p>
+              </div>
+              <div className="daily">
+              <span>Next 7 days</span>
+              {this.state.data.daily ? this.state.data.daily.data.map((day, i) => {
+                if (i == 0) return
+                return <Day key={day.time} day={day}/>
+              }) : 'nada'}
+              </div>
+            </div>
+          )}
         </div>
         <div className="footer">
           <footer><a href="https://darksky.net/poweredby/">Powered by Dark Sky</a></footer>
