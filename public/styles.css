@@ -69,6 +69,10 @@ input {
     display: block;
   }
 
+  .pac-container span {
+    display: inline;
+  }
+
   p {
     margin-bottom: 10px;
   }
