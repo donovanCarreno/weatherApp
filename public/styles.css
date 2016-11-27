@@ -7,16 +7,21 @@ header {
   height: 25px;
 }
 
+.gps, input {
+  vertical-align: middle;;
+}
+
 .gps {
   cursor: pointer;
   height: 20px;
-  padding: 8px;
+  padding: 10px 15px;
 }
 
 input {
   border-color: black;
-  border-radius: 10px;
+  border-radius: 8px;
   font-size: 20px;
+  margin-right: -.5em;
   text-align: center;
 }
 
