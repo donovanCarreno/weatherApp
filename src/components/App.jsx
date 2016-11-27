@@ -94,7 +94,7 @@ class App extends React.Component {
         <header>
           <form onSubmit={this.handleSubmit}>
             <input id="search" value={this.state.address} onChange={this.handleChange} ref="input" type='text' placeholder='City, ST'/>
-            <img className="gps" src="/gps.png" onClick={this.currentLocation} />
+            {window.chrome ? <img className="gps" src="/gps.png" onClick={this.currentLocation} /> : ''}
           </form>
         </header>
         <div className="main">
