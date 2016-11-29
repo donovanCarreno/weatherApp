@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Router, Route, browserHistory, IndexRoute} from 'react-router'
 import {apiKey, mapsKey} from '../../key'
 import InputForm from './InputForm'
 import {Details} from './Details'
