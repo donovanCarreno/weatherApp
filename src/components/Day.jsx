@@ -14,3 +14,7 @@ export const Day = (props) => {
     </div>
   )
 }
+
+Day.propTypes = {
+  day: React.PropTypes.object.isRequired
+}
