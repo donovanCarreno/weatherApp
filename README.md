@@ -10,8 +10,8 @@ It was designed using a mobile first approach and is fully responsive.
 2. Clone it down to your local machine
 3. create a key.js file in the root directory
   - file contents should be:
-    - export const apiKey = <YOUR DARK SKY API KEY>
-    - export const mapsKey = <YOUR GOOGLE MAPS API KEY>
+    - ```export const apiKey = YOUR_DARK_SKY_API_KEY```
+    - ```export const mapsKey = YOUR_GOOGLE_MAPS_API_KEY>```
 4. run 'npm install' to install dependencies
 5. run 'npm run start:dev'
 6. open your browser and go to 'localhost:3000'
