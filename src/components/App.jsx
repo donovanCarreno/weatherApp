@@ -26,6 +26,7 @@ class App extends React.Component {
     navigator.geolocation.getCurrentPosition((position) => {
       $.ajax(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=${mapsKey}`)
       .then((addressData) => {
+        console.log('addressData', addressData)
         let address = `${addressData.results[0].address_components[2].short_name}, ${addressData.results[0].address_components[4].short_name}`
         this.setState({address})
         this.handleSubmit()
@@ -44,6 +45,7 @@ class App extends React.Component {
   handleSubmit() {
     $.ajax(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.address}&key=${mapsKey}`)
     .then((geoData) => {
+      console.log('geoData', geoData)
       this.darkskyAPI(geoData)
     })
   }
