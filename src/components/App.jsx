@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {apiKey, mapsKey} from '../../key'
 import InputForm from './InputForm'
 import {Details} from './Details'
 // import {mockData} from '../../mockData'
+const apiKey = process.env.apiKey
+const mapsKey = process.env.mapsKey
 
 class App extends React.Component {
   constructor() {
