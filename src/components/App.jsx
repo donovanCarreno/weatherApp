@@ -1,5 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {Router, Route, browserHistory} from 'react-router'
+import {apiKey, mapsKey} from '../../key'
 import InputForm from './InputForm'
 import {Details} from './Details'
 
@@ -9,7 +11,6 @@ class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.currentLocation = this.currentLocation.bind(this)
-    this.darkskyAPI = this.darkskyAPI.bind(this)
     this.state = {
       address: '',
       daily: {},
@@ -23,7 +24,6 @@ class App extends React.Component {
     navigator.geolocation.getCurrentPosition((position) => {
       $.ajax(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=${mapsKey}`)
       .then((addressData) => {
-        console.log('addressData', addressData)
         let address = `${addressData.results[0].address_components[2].short_name}, ${addressData.results[0].address_components[4].short_name}`
         this.setState({address})
         this.handleSubmit()
@@ -33,38 +33,30 @@ class App extends React.Component {
 
   handleChange(e) {
     e.preventDefault()
-
     this.setState({
       address: e.target.value
     })
   }
 
-  handleSubmit() {
-    $.ajax(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.address}&key=${mapsKey}`)
-    .then((geoData) => {
-      console.log('geoData', geoData)
-      this.darkskyAPI(geoData)
-    })
-  }
+  handleSubmit(address) {
+    if (address !== this.state.address) {
+      browserHistory.push(`/forecast/${address}`)
+      fetch(`/forecast/${address}`)
+      .then(res => (
+        res.json()
+        .then(data => {
+          let summary = data.hourly.summary
+          let temp = Math.round(data.currently.temperature).toFixed(0)
 
-  darkskyAPI(geoData) {
-    let lat = geoData.results[0].geometry.location.lat
-    let long = geoData.results[0].geometry.location.lng
-
-    $.ajax(`https://api.darksky.net/forecast/${apiKey}/${lat},${long}`, {
-      dataType: "jsonp"
-    })
-    .then((data) => {
-      let summary = data.hourly.summary
-      let temp = Math.round(data.currently.temperature).toFixed(0)
-
-      this.setState({
-        daily: data.daily,
-        landing: false,
-        summary,
-        temp
-      })
-    })
+          this.setState({
+            daily: data.daily,
+            landing: false,
+            summary,
+            temp
+          })
+        })
+      ))
+    }
   }
 
   componentDidMount() {
@@ -76,7 +68,6 @@ class App extends React.Component {
       address.pop()
       address = address.join()
       this.setState({address})
-      this.handleSubmit()
     })
   }
 
@@ -111,4 +102,9 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'))
+ReactDOM.render((
+  <Router history={browserHistory}>
+    <Route path='/' component={App} />
+    <Route path='/forecast/:address' component={App} />
+  </Router>
+), document.getElementById('app'))
