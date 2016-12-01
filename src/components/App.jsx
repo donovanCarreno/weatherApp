@@ -54,6 +54,9 @@ class App extends React.Component {
             temp
           })
         })
+        .catch(err => (
+          console.log('err', err)
+        ))
       ))
     }
   }
@@ -67,7 +70,6 @@ class App extends React.Component {
       address.pop()
       address = address.join()
       this.setState({address})
-      this.handleSubmit(address)
     })
   }
 
