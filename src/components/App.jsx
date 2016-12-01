@@ -39,7 +39,7 @@ class App extends React.Component {
 
   handleSubmit(address) {
       browserHistory.push(`/forecast/${address}`)
-      fetch(`/forecast/${address}`)
+      $.ajax(`/forecast/${address}`)
       .then(res => (
         res.json()
         .then(data => {
