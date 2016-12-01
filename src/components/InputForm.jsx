@@ -8,8 +8,11 @@ export default class InputForm extends React.Component {
 
   submitForm(e) {
     e.preventDefault()
+    let address = this.refs.input.value.split(',')
+    address.pop()
+    address = address.join()
     this.refs.input.blur()
-    this.props.handleSubmit()
+    this.props.handleSubmit(address)
   }
 
   render() {
