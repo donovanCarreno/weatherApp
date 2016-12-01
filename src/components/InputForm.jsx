@@ -19,7 +19,7 @@ export default class InputForm extends React.Component {
     return (
       <form onSubmit={this.submitForm}>
         <input id="search" value={this.props.address} onChange={this.props.handleChange} ref="input" type='text' placeholder='City, ST'/>
-        {window.chrome ? <img className="gps" src="/gps.png" onClick={this.props.currentLocation} /> : ''}
+        {false ? <img className="gps" src="/gps.png" onClick={this.props.currentLocation} /> : ''}
       </form>
     )
   }
