@@ -3,7 +3,7 @@ This is a weather app written in React using the Dark Sky API.
 
 It was designed using a mobile first approach and is fully responsive.
 
-check it out here: (https://donovan-weather-app.herokuapp.com "My Weather App")
+check it out here: https://donovan-weather-app.herokuapp.com
 * the source code for the deployed version is on the 'deploy' branch
 
 ### To Run Locally:
