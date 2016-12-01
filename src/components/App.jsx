@@ -38,7 +38,6 @@ class App extends React.Component {
   }
 
   handleSubmit(address) {
-    if (address !== this.state.address) {
       browserHistory.push(`/forecast/${address}`)
       fetch(`/forecast/${address}`)
       .then(res => (
@@ -58,7 +57,6 @@ class App extends React.Component {
           console.log('err', err)
         ))
       ))
-    }
   }
 
   componentDidMount() {
@@ -70,6 +68,7 @@ class App extends React.Component {
       address.pop()
       address = address.join()
       this.setState({address})
+      this.handleSubmit(address)
     })
   }
 
