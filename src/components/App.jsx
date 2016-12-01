@@ -2,9 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import InputForm from './InputForm'
 import {Details} from './Details'
-// import {mockData} from '../../mockData'
-const apiKey = process.env.apiKey
-const mapsKey = process.env.mapsKey
 
 class App extends React.Component {
   constructor() {
@@ -23,8 +20,6 @@ class App extends React.Component {
   }
 
   currentLocation(e) {
-    console.log('mapsKey', mapsKey)
-    console.log('apiKey', apiKey)
     navigator.geolocation.getCurrentPosition((position) => {
       $.ajax(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=${mapsKey}`)
       .then((addressData) => {
