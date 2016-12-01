@@ -38,25 +38,22 @@ class App extends React.Component {
   }
 
   handleSubmit(address) {
-      browserHistory.push(`/forecast/${address}`)
-      $.get(`/forecast/${address}`)
-      .then(res => (
-        res.json()
-        .then(data => {
-          let summary = data.hourly.summary
-          let temp = Math.round(data.currently.temperature).toFixed(0)
+    browserHistory.push(`/forecast/${address}`)
+    $.getJSON(`/forecast/${address}`)
+    .then(data => {
+      let summary = data.hourly.summary
+      let temp = Math.round(data.currently.temperature).toFixed(0)
 
-          this.setState({
-            daily: data.daily,
-            landing: false,
-            summary,
-            temp
-          })
-        })
-        .catch(err => (
-          console.log('err', err)
-        ))
-      ))
+      this.setState({
+        daily: data.daily,
+        landing: false,
+        summary,
+        temp
+      })
+    })
+    .catch(err => (
+      console.log('err', err)
+    ))
   }
 
   componentDidMount() {
